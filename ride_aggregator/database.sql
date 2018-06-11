@@ -1,0 +1,12 @@
+CREATE DATABASE mad3134_ride;
+USE mad3134_ride;
+
+CREATE TABLE legs (
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	hash VARCHAR(255) NOT NULL UNIQUE,
+	data VARCHAR(255),
+	username VARCHAR(255),
+	FOREIGN KEY (username) REFERENCES users(name)
+);
+
+

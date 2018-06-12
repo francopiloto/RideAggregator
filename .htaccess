@@ -1,0 +1,7 @@
+
+# Prevent directory navigation
+Options -Indexes
+
+# Enable routing
+RewriteEngine on
+RewriteRule ^api/(.*) api/index.php?_REQUEST=$1 [NC,L]

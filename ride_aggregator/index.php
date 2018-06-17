@@ -36,6 +36,10 @@
 				$p2 = getPlace($route[1]);
 				$leg = getLeg($route[0], $route[1]);
 				
+				if ($leg->provider == "0") {
+					setUberPrice($p1,$p2,$leg);
+				}
+				
 				echo "<div class='box'>";
 					echo "<div class='leg'>";
 						echo "<div>";
@@ -50,6 +54,10 @@
 					{						
 						$p2 = getPlace($route[$i]);
 						$leg = getLeg($route[$i-1], $route[$i]);
+						
+						if ($leg->provider == "0") {
+							setUberPrice($p1,$p2,$leg);
+						}
 				
 						echo "<div class='legx'>";
 							echo "<div>";	

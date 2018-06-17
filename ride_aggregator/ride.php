@@ -2,13 +2,15 @@
 <?php		
 	require "database.php";
 	require "graph.php";
+	require 'vendor/autoload.php';
+    use GuzzleHttp\Client;
 	
 	$legs = findLegs();
 	$places = findPlaces();
 
 	// find all routes between two points.
 	// the maximum number os places in the route is 4;
-	// a leg is valid if its size is less than twice the minimum
+	// a leg is valid if its size is less than 1.5x the minimum
 	// distance between origin and destination
 	function findRoutes($origin, $destination)
 	{	
@@ -25,7 +27,7 @@
 		$p2 = getPlace($destination);
 		$minDist = distance($p1, $p2);
 		
-		$routes = validate($routes, $minDist * 2);
+		$routes = validate($routes, $minDist * 1.5);
 		
 		usort($routes, function($a, $b) {
 			return count($a) - count($b);
@@ -40,6 +42,10 @@
 			
 		foreach ($routes as $route)
 		{
+			if (count($add) > 4) {
+				break;
+			}
+			
 			$distance = 0;
 			
 			for ($i = 1; $i < count($route); $i++)
@@ -51,11 +57,30 @@
 			}
 			
 			if ($distance < $maxDistance) {
-				array_push($add, $route);			
+				array_push($add, $route);		
 			}
 		}
 		
 		return $add;
+	}
+	
+	function setUberPrice($p1,$p2,&$leg)
+	{
+		$client = new Client();
+		
+		$request_url = "https://sandbox-api.uber.com/v1.2/estimates/price?server_token=" .
+		               "Olwm8Ek2QqpqBGuy4FaEghoSDzVEGFP33D4eRfAg" .
+					   "&start_latitude="  . $p1->latitude  .
+					   "&start_longitude=" . $p1->longitude . 
+					   "&end_latitude="    . $p2->latitude  .
+					   "&end_longitude="   . $p2->longitude;
+					   
+		$response = $client->get($request_url);
+		$body = $response->getBody()->getContents();
+		$data = json_decode($body, true);
+		
+		$leg->provider = $data["prices"][0]["display_name"];
+		$leg->price = $data["prices"][0]["estimate"];
 	}
 	
 	function getPlace($id)

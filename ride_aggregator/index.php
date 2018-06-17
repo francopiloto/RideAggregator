@@ -78,8 +78,8 @@
 	<div class="container box" style="margin-top:30px;">
 		<h1 class="title is-3">Ride Aggregator</h1>
 		<form action="index.php" method="POST">		
-			<div class="field">				
-				<label class="label">Origin</label>				
+			<div class="field">
+				<label class="label">Origin</label>
 				<div class="control">
 					<div class="select is-primary">
 						<select name="origin">

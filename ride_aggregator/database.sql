@@ -40,7 +40,7 @@ INSERT INTO legs (origin,destination,price,provider) VALUES (1,9,'3.25','TTC');
 INSERT INTO legs (origin,destination,price,provider) VALUES (1,10,'3.00','Lambton Bus');
 
 INSERT INTO legs (origin,destination,price,provider) VALUES (2,1,'3.25','TTC');
-INSERT INTO legs (origin,destination,price,provider) VALUES (2,3,'3.25','TTC');
+INSERT INTO legs (origin,destination,price,provider) VALUES (2,3,'0','0');
 INSERT INTO legs (origin,destination,price,provider) VALUES (2,4,'3.25','TTC');
 INSERT INTO legs (origin,destination,price,provider) VALUES (2,5,'3.25','TTC');
 INSERT INTO legs (origin,destination,price,provider) VALUES (2,6,'3.25','TTC');

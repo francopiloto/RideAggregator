@@ -1,0 +1,36 @@
+.leg, .legx
+{
+	display: inline-block;
+	font-size: 12px;
+	text-align: center;
+	padding: 10px 0 10px 0;		
+}
+
+.place
+{
+	display: inline-block;
+	width: 100px;
+}
+
+.separator 
+{
+	display: inline-block;
+	width: 100px;
+}
+
+.price {
+	display: block;
+}
+
+.provider
+{
+	display: block;
+	font-size: 10px;
+	text-transform: uppercase;
+}
+
+.legx .price,
+.legx .provider
+{
+	text-align: left;
+}

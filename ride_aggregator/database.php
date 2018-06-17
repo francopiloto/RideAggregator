@@ -8,12 +8,30 @@
 		}
 	}
 	
-	function findRoutes($origin, $destination)
+	function findPlaces()
 	{
-		connect();
-		$user = R::findAll("legs");
+		connect();		
+		$places = R::findAll("places");
 		R::close();
 		
-		return $user;
+		return $places;
+	}
+	
+	function loadPlace($id) 
+	{
+		connect();		
+		$place = R::findOne("places","id=?",[$id]);
+		R::close();
+		
+		return $place;
+	}
+	
+	function findLegs()
+	{
+		connect();
+		$legs = R::findAll("legs");
+		R::close();
+		
+		return $legs;
 	}	
 ?>

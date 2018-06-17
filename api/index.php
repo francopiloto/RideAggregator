@@ -6,7 +6,7 @@
 	switch ($request_uri[0])
 	{			 
 		case "/api/ride":
-			 require "../ride_aggregator/index.php";
+			 require "../ride_aggregator/ride-api.php";
 			 break;
 		
 		default:
